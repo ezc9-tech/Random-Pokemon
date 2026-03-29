@@ -15,8 +15,14 @@ function App() {
   const [banList, setBanList] = useState([]);
 
   const handleBan = (attribute) => {
-    setBanList(prev => [...prev, attribute])
-  }
+    setBanList(prev =>
+      prev.includes(attribute) ? prev : [...prev, attribute]
+    );
+  };
+
+  const unBan = (attribute) => {
+    setBanList(prev => prev.filter(item => item !== attribute));
+  };
 
   const getPokemonIndex = () => {
     const totalPokemon = 1025;
@@ -70,7 +76,7 @@ function App() {
     <>
       <div className="main-content">
           <PictureGenerator handleSubmit={handleSubmit} pokemon={pokemon} handleBan={handleBan} />
-          <BanList bannedItems={banList} />
+          <BanList bannedItems={banList} unBan={unBan} />
       </div>
     </>
   )

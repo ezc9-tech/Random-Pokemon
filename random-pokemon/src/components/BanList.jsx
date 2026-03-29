@@ -1,4 +1,4 @@
-function BanList({ bannedItems }) {
+function BanList({ bannedItems, unBan }) {
 
     return (
         <div className="ban-list">
@@ -6,7 +6,7 @@ function BanList({ bannedItems }) {
             <p>Select an attribute in your listing to ban it</p>
 
             {bannedItems.map((item, index) => (
-                <div key={index} className="banned-item">
+                <div key={index} onClick={() => unBan(item)} className="banned-item">
                     <p>{item}</p>
                 </div>
             ))}
